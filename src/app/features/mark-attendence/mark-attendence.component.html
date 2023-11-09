@@ -1,0 +1,33 @@
+<div class="mark-student">
+  <h2>Mark Attendence</h2>
+  <form [formGroup]="markStudent" (submit)="applyMarkAttendence(markStudent)" novalidate>
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Student ID</mat-label>
+        <mat-select matInput class="form-control" formControlName="id" placeholder="Select Student ID" required>
+          <mat-option *ngFor="let student of allStudents" [value]="student.id">{{student.id}}-{{student.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" class="form-control" formControlName="date" placeholder="DD/MM/YYYY" required>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> 
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Select</mat-label>
+        <mat-select matInput class="form-control" formControlName="status" placeholder="Select Status" required>
+          <mat-option value="Present">Present</mat-option>
+          <mat-option value="Absent">Absent</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-actions">
+      <button mat-raised-button [disabled]="!markStudent.valid" color="accent">Submit</button>
+    </div>
+  </form>
+</div>
